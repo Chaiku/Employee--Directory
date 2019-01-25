@@ -1,0 +1,43 @@
+.wrapper {
+    width: 960px; 
+    padding: 0 5px;
+}
+
+#navBar {
+    background-color: gray;
+    width: 20%;
+    float: left;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+}
+
+#dirDisplay {
+    background-color: tan;
+    padding-bottom: 100%;
+    margin-bottom: 100%;
+    margin-left: 192px;
+    padding-left: 25px;
+
+
+}
+
+ul {
+    margin: 10px 30px;
+    list-style: none;
+
+}
+
+li {
+    padding: 5px;
+}
+
+h2 {
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.employeeInfo {
+    margin: 5px;
+    border: 2px solid black;
+}
+
