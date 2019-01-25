@@ -17,11 +17,9 @@ $(`#viewBtn`).on(`click`, viewView);
 const viewVerify = function () {
   $(`#dirDisplay`).empty();
   $(`#dirDisplay`).append(`<form id="veriForm">Employee Name:<input type="text" id="veriName"></form>`)
-  $(`#dirDisplay`).append(`<button id="checkBtn">Check Employee</button>`)
-  document.getElementById('checkBtn').addEventListener("click", function (e) {
-    e.preventDefault();
-    verifyEmploy();
-  });
+  $(`#dirDisplay`).append(`<button id="checkBtn">Check Employee</button>`);
+  $(`#dirDisplay`).append(`<div class="message"></div>`);
+  document.getElementById('checkBtn').addEventListener("click", verifyEmploy);
 }
 
 //Verify button is clicked, it runs viewVerify
@@ -29,15 +27,17 @@ $(`#verifyBtn`).on(`click`, viewVerify);
 
 
 // verifyEmploy function that checks if the name entered exists in employeeList.
-const verifyEmploy = function () {
+const verifyEmploy = function (e) {
+  e.preventDefault();
   let nameVeri = $(`#veriName`).val().toLowerCase();
   for (i = 0; i != employeeList.length; i++) {
     if (employeeList[i].name.toLowerCase() === nameVeri) {
-      $(`#dirDisplay`).append("<p>Yes this is an employee.</p>")
+      $(`.message`).html("<p>Yes this is an employee.</p>")
       return;
     }
   }
-  $(`#dirDisplay`).append("<p>this person is not an employee<p>");
+  $(`.message`).html("<p>this person is not an employee<p>");
+
 }
 
 
@@ -49,10 +49,9 @@ const viewAdd = function () {
   for (i = 0; i < employeeList.length; i++) {
     $(`#dirDisplay`).append(`<div class="employeeInfo"><p>${employeeList[i].name}</p><p>${employeeList[i].officeNum}</p><p>${employeeList[i].phoneNum}</p></div>`)
   }
-  document.getElementById(`addEmpBtn`).addEventListener("click", function (e) {
-    e.preventDefault();
-    addEmployee();
-  });
+  $(`#dirDisplay`).append(`<div class="addDiv"></div>`);
+  document.getElementById(`addEmpBtn`).addEventListener("click", addEmployee);
+  render( generateListHTML() );
 }
 
 // Add button is clicked, it runs viewAdd
@@ -61,7 +60,8 @@ $(`#addBtn`).on(`click`, viewAdd);
 
 //Add Employee function creates an object from input values then pushes in to 
 //EmployeeList array and displays updated list.
-let addEmployee = function () {
+let addEmployee = function (e) {
+  e.preventDefault();
   let employee = {};
    employee.name = $(`#addName`).val();
    employee.officeNum = $(`#addOffNum`).val();
@@ -71,7 +71,7 @@ let addEmployee = function () {
     //   alert("Please fill out all the boxes."); 
     // } 
 
-    $(`#dirDisplay`).append(`<div class="employeeInfo"><p>${employee.name}</p><p>${employee.officeNum}</p><p>${employee.phoneNum}</p></div>`);
+    $(`.addDiv`).append(`<div class="employeeInfo"><p>${employee.name}</p><p>${employee.officeNum}</p><p>${employee.phoneNum}</p></div>`);
   }
   
   
@@ -81,3 +81,4 @@ let addEmployee = function () {
 
 
 
+ 
